@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="mainImage">
+
+        <img src="/images/main.png" alt="">
+    </div>
+    <div class="signup-form">
+        <!-- Your login form content here -->
+        <h1>User Registration</h1>
+        <form action="/users/register" method="post"> <!-- Pointing to the correct endpoint -->
+            <div class="input-row">
+                <input type="text" name="firstName" placeholder="First Name" class="firstName">
+                <input type="text" name="lastName" placeholder="Last Name" class="lastName">
+            </div>
+            <div class="input-row">
+                <input type="text" name="userName" placeholder="User Name" class="userName">
+                <input type="email" name="email" placeholder="Email" class="email"> <!-- Changed to 'email' for consistency -->
+            </div>
+            <div class="input-row">
+                <input type="password" name="password" placeholder="Password" class="password">
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" class="confirmPassword">
+            </div>
+                    
+            <button type="submit" class="signUp-btn">Sign Up</button>
+            <p class="signIn">Already have an account? <a href="" class="forget"> Sign in Here</a></p>
+        </form>
+        
+
+    </div>
+</div>
+<script src="/js/signup.js"></script>
