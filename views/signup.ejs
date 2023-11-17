@@ -6,20 +6,35 @@
     <div class="signup-form">
         <!-- Your login form content here -->
         <h1>User Registration</h1>
-        <form action="/users/register" method="post"> <!-- Pointing to the correct endpoint -->
+        <form action="/users/register" method="post" id="SignUp-form"> <!-- Pointing to the correct endpoint -->
             <div class="input-row">
-                <input type="text" name="firstName" placeholder="First Name" class="firstName">
-                <input type="text" name="lastName" placeholder="Last Name" class="lastName">
+                <input type="text" name="firstName" id="FirstName" placeholder="First Name" class="firstName">
+                <input type="text" name="lastName" id="LastName" placeholder="Last Name" class="lastName">
+            </div>
+            <div class="error-row">
+                <div class="error">231</div>
+                <div class="error">231</div>
+
+            </div>
+
+            <div class="input-row">
+                <input type="text" name="userName" id="UserName" placeholder="User Name" class="userName">
+                <input type="email" name="email" id="Email" placeholder="Email" class="email"> <!-- Changed to 'email' for consistency -->
+            </div>
+            <div class="error-row">
+                <div class="error">231</div>
+                <div class="error">231</div>
+
             </div>
             <div class="input-row">
-                <input type="text" name="userName" placeholder="User Name" class="userName">
-                <input type="email" name="email" placeholder="Email" class="email"> <!-- Changed to 'email' for consistency -->
+                <input type="password" name="password" id="Password" placeholder="Password" class="password">
+                <input type="password" name="confirmPassword" id="CPassword" placeholder="Confirm Password" class="confirmPassword">
             </div>
-            <div class="input-row">
-                <input type="password" name="password" placeholder="Password" class="password">
-                <input type="password" name="confirmPassword" placeholder="Confirm Password" class="confirmPassword">
-            </div>
-                    
+            <div class="error-row">
+                <div class="error">231</div>
+                <div class="error">231</div>
+
+            </div> 
             <button type="submit" class="signUp-btn">Sign Up</button>
             <p class="signIn">Already have an account? <a href="/" class="forget"> Sign in Here</a></p>
         </form>

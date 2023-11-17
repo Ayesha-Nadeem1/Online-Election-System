@@ -148,6 +148,22 @@ html {
     border-radius: 5px;
 
 }
+.error-row {
+    display: flex;
+}
+
+.error-row .error {
+    
+    border: 1px solid #adb3bd;
+    border-radius: 1px;
+    width: 250px;
+    outline: none;
+    margin-left: 10px;
+    font-size: 13px;
+    text-align: left;
+    padding: 2px 2px;
+    margin-top: 0px;
+}
 
 .input-row input {
     border: 1px solid #adb3bd;

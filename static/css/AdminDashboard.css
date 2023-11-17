@@ -202,10 +202,11 @@ margin: 0 6px;
 font-size: 18px;
 cursor: pointer;
 }
-.dashboardText{
+.headingText{
 text-decoration: underline;
     font-size: 22px;
     margin-bottom: 15px;
+    margin-left: 10px;
 }
 .box-data
 {
@@ -226,3 +227,53 @@ text-decoration: underline;
     border-radius: 5px;
 
 }
+.Number-icon{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-top: 25px;
+}
+.boxHeading{
+    text-align: center;
+    padding: 6px;
+    font-size: 18px;
+}
+.tNumber{
+    font-size: 25px;
+}
+
+
+/* Voter Tally Graph and Details */
+.voterTally{
+    position: relative;
+    top: 160px;
+}
+.container {
+    position: absolute;
+    top: 50px; /* Adjust as needed */
+    right: 50px; /* Adjust to move it horizontally */
+    display: flex; /* Use flexbox for layout control */
+    align-items: center; /* Center items vertically */
+  }
+
+  /* Optional style for the label */
+  label {
+    text-align: right; /* Aligns label text to the right */
+    margin-right: 10px; /* Adjust spacing between label and select box */
+  }
+
+  /* Style for the select box */
+  select {
+    width: 150px; /* Optional: Set a specific width for the select box */
+    height: 30px;
+  }
+  .voterTallyGraph{
+    
+    width: 90%;
+    height: 400px;
+    background-color: white;
+    position: absolute;
+    top: 90px; /* Adjust as needed */
+    right: 50px; /* Adjust to move it horizontally */
+  }

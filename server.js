@@ -28,6 +28,9 @@ app.get('/', (req, res) => {
 app.get('/SignUp', (req, res) => {
   res.render('base', { page: 'signup', navbarButtonText: 'Sign In' });
 });
+app.get('/Admin', (req, res) => {
+  res.render('AdminDashboard');
+});
 
 
 //Listening the app

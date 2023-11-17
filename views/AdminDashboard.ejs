@@ -65,23 +65,51 @@
         </nav>
     </div>
     <section class="box-data">
-        <h1 class="dashboardText">DASHBOARD</h1>
+        <h1 class="headingText">DASHBOARD</h1>
         <div class="boxes">
             <div class="box">
                 <div class="boxHeading">Number of Election</div>
                 <div class="Number-icon">
-                    <p id="NumberOfElection">0</p>
+                    <p id="NumberOfElection" class="tNumber">0</p>
+                    <i class="fa-solid fa-e"  style="color: #2589f6; font-size: 30px;"></i>
                 </div>
             </div>
             <div class="box">
-                
+                <div class="boxHeading">Number of Candidates</div>
+                <div class="Number-icon">
+                    <p id="NumberOfCandidate" class="tNumber">0</p>
+                    <i class="fa-solid fa-c"  style="color: #2589f6; font-size: 30px;"></i>
+                </div>
             </div>
             <div class="box">
-                
+                <div class="boxHeading">Total Voters</div>
+                <div class="Number-icon">
+                    <p id="NumberOfVoter" class="tNumber">0</p>
+                    <i class="fa-solid fa-v"  style="color: #2589f6; font-size: 30px;"></i>
+                </div>
             </div>
             <div class="box">
-                
+                <div class="boxHeading">Voter's Voted</div>
+                <div class="Number-icon">
+                    <p id="NumberOfVoterVoted" class="tNumber">0</p>
+                    <i class="fa-solid fa-v"  style="color: #2589f6; font-size: 30px;"></i>
+                </div>
             </div>
+            
+        </div>
+    </section>
+    <section class="voterTally">
+        <h1 class="headingText">Voter Tally</h1>
+        <div class="container">
+            <label for="election">Election:</label>
+            <select id="election" name="election">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="mercedes">Mercedes</option>
+              <option value="audi">Audi</option>
+            </select>
+        </div>
+        <div class="voterTallyGraph">
             
         </div>
     </section>
