@@ -263,7 +263,7 @@ body {
     position: absolute;
     top: 50px;
     /* Adjust as needed */
-    right: 5px;
+    right: 27px;
     /* Adjust to move it horizontally */
     display: flex;
     /* Use flexbox for layout control */
@@ -296,5 +296,5 @@ select {
     border-radius: 4px;
     padding:8px 8px;
     height: 35px;
-    width: 150px;
+    width: 180px;
 }
