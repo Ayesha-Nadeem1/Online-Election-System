@@ -251,12 +251,16 @@ text-decoration: underline;
 }
 .container {
     position: absolute;
-    top: 50px; /* Adjust as needed */
-    right: 50px; /* Adjust to move it horizontally */
-    display: flex; /* Use flexbox for layout control */
-    align-items: center; /* Center items vertically */
-  }
-
+    top: 50px;
+    /* Adjust as needed */
+    right: 43px;
+    /* Adjust to move it horizontally */
+    display: flex;
+    /* Use flexbox for layout control */
+    align-items: center;
+    /* Center items vertically */
+    width: 200px;
+}
   /* Optional style for the label */
   label {
     text-align: right; /* Aligns label text to the right */
@@ -268,12 +272,13 @@ text-decoration: underline;
     width: 150px; /* Optional: Set a specific width for the select box */
     height: 30px;
   }
-  .voterTallyGraph{
-    
-    width: 90%;
-    height: 400px;
+
+  .voterTallyGraph {
+    margin-top: 70px;
+    margin-left: 60px;
+    margin-right: 60px;
     background-color: white;
-    position: absolute;
-    top: 90px; /* Adjust as needed */
-    right: 50px; /* Adjust to move it horizontally */
-  }
+    height: 200px;
+
+
+}
