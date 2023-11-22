@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
         trim: true // Removes whitespace from the beginning and end
     },
     Password: String,
-    RoleId: { type: Number, default: 1 },
+    RoleId: { type: Number, default: 2 },
+    isActive: { type: Boolean, default: true },
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

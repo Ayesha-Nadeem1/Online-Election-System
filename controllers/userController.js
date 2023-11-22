@@ -1,12 +1,13 @@
 // Controller function for handling user registration
 const User = require('../models/user');
 const UserDetail = require('../models/userDetails');
-const jwt = require('jsonwebtoken'); 
+const jwt = require('jsonwebtoken');
 
 
 async function createUser(req, res) {
     try {
         const { firstName, lastName, userName, email, password, confirmPassword } = req.body;
+        console.log(firstName, lastName, userName, email, password, confirmPassword)
         // Check if passwords match
         if (password !== confirmPassword) {
             return res.status(400).json({ error: 'Passwords do not match' });
@@ -35,51 +36,64 @@ async function createUser(req, res) {
         res.status(500).json({ error: err.message });
     }
 }
-function GenerateToken(user){
+function GenerateToken(user) {
     const payload = {
-    role: user.RoleId,
-    id: user._id,
-     };
+        role: user.RoleId,
+        id: user._id,
+    };
     const token = jwt.sign(payload, 'wdadadadad');
     return token;
-    };
-    async function login(req, res, next) {
-        const { UserName, Password } = req.body;
-    
-        try {
-            // Search for the user by username or email
-            const user = await User.findOne({
-                $or: [{ UserName }, { Email: UserName }]
-            });
-    
-            if (!user) {
-                return res.status(404).json({ error: 'User not found' });
-            }
-    
-            // Check if the passwords match
-            if (user.Password !== Password) {
-                return res.status(401).json({ error: 'Invalid credentials' });
-            }
-    
-            // If passwords match, generate a token
-            const token = GenerateToken(user);
-    
-            return res.status(200).json({
-                message: 'Logged in successfully',
-                UserName: UserName,
-                Email: user.Email,
-                FirstName: user.FirstName,
-                LastName: user.LastName,
-                token: token,
-            });
-        } catch (err) {
-            return res.status(500).json({ message: err.message });
+};
+async function login(req, res, next) {
+    const { UserName, Password } = req.body;
+
+    try {
+        // Search for the user by username or email
+        const user = await User.findOne({
+            $or: [{ UserName }, { Email: UserName }]
+        });
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
         }
-    };
-    async function admindasboard(req, res){
-        res.send('Welcome To Admin Dashboard');
+
+        // Check if the passwords match
+        if (user.Password !== Password) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        // If passwords match, generate a token
+        const token = GenerateToken(user);
+
+        // Prepare response data with token and user info
+        let responseData = {
+            message: 'Logged in successfully',
+            UserName,
+            Email: user.Email,
+            RoleId: user.RoleId,
+            token,
+        };
+
+        // For users with RoleId 2 (admin), redirect to admin page
+        if (user.RoleId === 2) {
+            // Redirect to admin dashboard
+            responseData.isAdmin = true;
+            responseData.redirectURL = '/users/admin';
+        }
+
+        // For other users, send the prepared response data
+        res.status(200).json(responseData);
+        
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
     }
-    
+}
+
+
+
+async function adminDashboard(req, res) {
+    res.render('AdminDashboard');
+}
 module.exports = {
-    createUser,login,admindasboard,
+    createUser, login, adminDashboard,
 };

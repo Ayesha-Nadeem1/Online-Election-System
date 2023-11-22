@@ -5,6 +5,7 @@ const authorization = require('../utils/authorizationMiddleware');
 
 router.post('/register', userController.createUser);
 router.post('/login', userController.login);
-router.post('/admin', authorization.validateToken, userController.admindasboard);
+router.get('/admin',userController.adminDashboard);
+
 
 module.exports = router;

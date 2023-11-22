@@ -5,6 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const userRoute=require('./routes/userRoute')
 
+
 require('./utils/db')
 app.use(express.static(path.join(__dirname, 'static')));
 
