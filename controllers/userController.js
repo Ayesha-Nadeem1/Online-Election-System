@@ -2,6 +2,9 @@
 const User = require('../models/user');
 const UserDetail = require('../models/userDetails');
 const jwt = require('jsonwebtoken');
+const { v4: uuidv4 } = require('uuid');
+const {setUser}=require('../utils/auth')
+
 
 
 async function createUser(req, res) {
@@ -31,7 +34,8 @@ async function createUser(req, res) {
         });
         await newDetails.save();
 
-        res.status(201).json({ message: 'User registered successfully' });
+        return res.redirect("/");
+
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -59,7 +63,10 @@ async function login(req, res, next) {
 
         // Check if the passwords match
         if (user.Password !== Password) {
-            return res.status(401).json({ error: 'Invalid credentials' });
+            // return res.status(404).json({ error: 'User not found' });
+
+            return res.render('LandingNavbar', { page: 'login', navbarButtonText: 'Sign In' });
+            
         }
 
         // If passwords match, generate a token
@@ -78,11 +85,17 @@ async function login(req, res, next) {
         if (user.RoleId === 2) {
             // Redirect to admin dashboard
             responseData.isAdmin = true;
-            responseData.redirectURL = '/users/admin';
         }
 
         // For other users, send the prepared response data
-        res.status(200).json(responseData);
+        // return res.status(200).json(responseData);
+        // const sessionId=uuidv4();
+        // setUser(sessionId,user)
+        const token2=setUser(user); 
+        res.cookie("uid",token2)
+        return res.render('AdminNavbar', { page:'AdminDashboard'});
+        return res.status(200).json(responseData);
+
         
     } catch (err) {
         return res.status(500).json({ message: err.message });
@@ -92,7 +105,7 @@ async function login(req, res, next) {
 
 
 async function adminDashboard(req, res) {
-    res.render('AdminDashboard');
+    return res.render('AdminNavbar', { page: 'AdminDashboard'})
 }
 module.exports = {
     createUser, login, adminDashboard,

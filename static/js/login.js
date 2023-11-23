@@ -14,44 +14,44 @@ document.getElementById('btn-SignUp').addEventListener('click', function() {
       });
   });
 
-// Handle login button click
-// Handle login button click
-async function handleLogin() {
-  const loginData = { UserName: 'username', Password: 'password' }; // Replace with actual login data
+//   async function handleLogin() {
+//     const loginData = { UserName: 'username', Password: 'password' }; // Replace with actual login data
+//     console.log('Admin status or redirect URL not found:')
 
-  try {
-      const response = await fetch('/login', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(loginData),
-      });
+//     try {
+//         const response = await fetch('/users/login', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify(loginData),
+//         });
+//         if (!response.ok) {
+//             // Handle login failure
+//             return;
+//         }
 
-      if (!response.ok) {
-          // Handle login failure
-          return;
-      }
+//         const data = await response.json();
+//         console.log(data);
 
-      const data = await response.json();
+//         if (data.isAdmin && data.redirectURL) {
+//             console.log('Redirecting to:', data.redirectURL);
+//             // Redirect to admin page for admin user
+//             window.location.href = data.redirectURL;
+//         } else {
+//             console.log('Admin status or redirect URL not found:', data.isAdmin, data.redirectURL);
+//             // Handle other user types or scenarios
+//             // For example, redirect to a default user page
+//             window.location.href = '/user/dashboard'; // Replace with your default user dashboard URL
+//         }
+//     } catch (error) {
+//         // Handle errors
+//         console.error('Error:', error);
+//     }
+// }
 
-      if (data.isAdmin && data.redirectURL) {
-        console.log('Redirecting to:', data.redirectURL);
-    
-        // Redirect to admin page for admin user
-        window.location.href = data.redirectURL;
-    } else {
-        console.log('Admin status or redirect URL not found:', data.isAdmin, data.redirectURL);
-        // Handle other user types or scenarios
-    }
-    
-    
-  } catch (error) {
-      // Handle errors
-      console.error('Error:', error);
-  }
-}
-
-// Call handleLogin when login button is clicked
-const loginButton = document.getElementById('btnLogin'); // Replace with your button ID
-loginButton.addEventListener('click', handleLogin);
+// // Call handleLogin when login button is clicked
+// document.addEventListener('DOMContentLoaded', () => {
+//     const loginButton = document.getElementById('btnLogin');
+//     loginButton.addEventListener('click', handleLogin);
+// });

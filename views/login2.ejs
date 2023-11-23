@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election System</title>
+    <link rel="stylesheet" href="/css/header.css">   
+    <link rel="stylesheet" href="/css/signup.css">   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <!-- <img src="your-logo.png" alt="Your Logo"> -->
+                <h1>ONLINE ELECTION SYSTEM</h1>
+
+            </div>
+            <ul class="menu">
+                <div class="links">
+
+                    <li class="navlinks-item"><a href="#">Home</a></li>
+                    <li class="navlinks-item"><a href="#">About</a></li>
+                    <li class="navlinks-item"><a href="#">Info</a></li>
+                    <li class="navlinks-item"><a href="#">Contact</a></li>
+                </div>
+                </div>
+                    <button class="btn" id="btn-SignUp">SIGN UP</button>
+                </div>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="mainImage">
+    
+            <img src="/images/main.png" alt="">
+        </div>
+        <div class="login-form">
+            <!-- Your login form content here -->
+            <h1>User Login</h1>
+            <form action="/users/login" method="post">
+                <div class="user input">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="UserName" placeholder="Enter your Username or Email" class="username">
+                </div>
+                <!-- <div class="error"></div> -->
+    
+                <!-- <p class="error userNameError">123</p> -->
+                <div class="password input">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="Password" placeholder="Enter your Password" class="Password">                
+                </div>
+                <!-- <div class="error"></div> -->
+    
+                <!-- <p class="error passwordError">asds</p> -->
+                <p ><a href="" class="forget">Forget Password?</a></p>
+                <button type="submit" class="login-btn" id="btnLogin">Login</button>
+            </form>
+            <p class="forget create">Don't have an account? <a href="/SignUp" class="forget"> Sign up Here</a></p>
+    
+        </div>
+    </div>
+   
+    <footer>
+        <!-- Footer content -->
+    </footer>
+    <script src="/js/login.js"></script>
+
+</body>
+</html>
