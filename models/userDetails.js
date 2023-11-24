@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const userDetailsSchema = new mongoose.Schema({
-    UserId: { type: String, required: true },
+    UserId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User' // Reference to the 'users' collection
+    },
     FirstName: { type: String, maxlength: 255 },
     LastName: { type: String, maxlength: 255 },
     DOB: { type: Date },

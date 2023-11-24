@@ -1,74 +1,182 @@
 <link rel="stylesheet" href="/css/AdminElection.css">
 
-    <section class="box-data">
-        <h1 class="headingText">ELECTIONS</h1>
-        <div class="boxes">
-            <div class="box">
-                <div class="boxHeading">Total Election</div>
-                <div class="Number-icon">
-                    <p id="totalElection" class="tNumber">0</p>
-                    <i class="fa-solid fa-e" style="color: #2589f6; font-size: 30px;"></i>
-                </div>
+<section class="box-data">
+    <h1 class="headingText">ELECTIONS</h1>
+    <div class="boxes">
+        <div class="box">
+            <div class="boxHeading">Total Election</div>
+            <div class="Number-icon">
+                <p id="totalElection" class="tNumber">0</p>
+                <i class="fa-solid fa-e" style="color: #2589f6; font-size: 30px;"></i>
             </div>
-            <div class="box">
-                <div class="boxHeading">Current Election</div>
-                <div class="Number-icon">
-                    <p id="currentElection" class="tNumber">0</p>
-                    <i class="fa-solid fa-c" style="color: #2589f6; font-size: 30px;"></i>
-                </div>
-            </div>
-            <div class="box">
-                <div class="boxHeading">Election Result Announced</div>
-                <div class="Number-icon">
-                    <p id="electionResultAnnounced" class="tNumber">0</p>
-                    <i class="fa-solid fa-v" style="color: #2589f6; font-size: 30px;"></i>
-                </div>
-            </div>
-            <div class="box">
-                <div class="boxHeading">Election Result Not Accounced</div>
-                <div class="Number-icon">
-                    <p id="electionResultNotAnnounced" class="tNumber">0</p>
-                    <i class="fa-solid fa-v" style="color: #2589f6; font-size: 30px;"></i>
-                </div>
-            </div>
-
         </div>
-    </section>
-    <section class="voterTally">
-        <h1 class="headingText">All Election</h1>
-        <div class="container">
-            <button type="button" class="btn btn-primary btn-sm" id="btnAddNewElection">Add New Election</button>
-
+        <div class="box">
+            <div class="boxHeading">Current Election</div>
+            <div class="Number-icon">
+                <p id="currentElection" class="tNumber">0</p>
+                <i class="fa-solid fa-c" style="color: #2589f6; font-size: 30px;"></i>
+            </div>
         </div>
-        <div class="tableElection">
-            <table class="table table-striped">
-                <thead>
-                  <tr>
+        <div class="box">
+            <div class="boxHeading">Election Result Announced</div>
+            <div class="Number-icon">
+                <p id="electionResultAnnounced" class="tNumber">0</p>
+                <i class="fa-solid fa-v" style="color: #2589f6; font-size: 30px;"></i>
+            </div>
+        </div>
+        <div class="box">
+            <div class="boxHeading">Election Result Not Accounced</div>
+            <div class="Number-icon">
+                <p id="electionResultNotAnnounced" class="tNumber">0</p>
+                <i class="fa-solid fa-v" style="color: #2589f6; font-size: 30px;"></i>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section class="voterTally">
+    <h1 class="headingText">All Election</h1>
+    <div class="container">
+        <button type="button" class="btn btn-primary btn-sm" id="btnAddNewElection" onclick="openPopup()">Add New
+            Election</button>
+
+    </div>
+    <!-- Popup Form -->
+    <div class="popup" id="popup">
+        <div class="close-btn">&times;</div>
+        <h2>Add Election!</h2>
+
+        <form class="row g-3 needs-validation" action="/election/register" method="post" novalidate>
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">Election Name</label>
+                    <input type="text" class="form-control" id="validationCustom01" required>
+                    <div class="invalid-feedback">
+                        Please provide the election name.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">Start Date</label>
+                    <input type="date" class="form-control" id="validationCustom02" required>
+                    <div class="invalid-feedback">
+                        Please provide the start date.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom03" class="form-label">End Date</label>
+                    <input type="date" class="form-control" id="validationCustom03" required>
+                    <div class="invalid-feedback">
+                        Please provide the end date.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom04" class="form-label">Province</label>
+                    <select class="form-select" id="validationCustom04" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option>Punjab</option>
+                      <option>Sindh</option>
+                      <option>KPK</option>
+                      <option>Balochistan</option>
+                      <option>Islamabad</option>
+
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select a valid province.
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationCustom04" class="form-label">City</label>
+                    <select class="form-select" id="validationCustom04" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option value="Karachi">Karachi</option>
+                      <option value="Lahore">Lahore</option>
+                      <option value="Faisalabad">Faisalabad</option>
+                      <option value="Rawalpindi">Rawalpindi</option>
+                      <option value="Gujranwala">Gujranwala</option>
+                      <option value="Peshawar">Peshawar</option>
+                      <option value="Multan">Multan</option>
+                      <option value="Hyderabad">Hyderabad</option>
+                      <option value="Islamabad">Islamabad</option>
+                      <option value="Quetta">Quetta</option>
+                      <option value="Bahawalpur">Bahawalpur</option>
+                      <option value="Sargodha">Sargodha</option>
+                      <option value="Sialkot">Sialkot</option>
+                      <option value="Sukkur">Sukkur</option>
+                      <option value="Rahim Yar Khan">Rahim Yar Khan</option>
+                      <option value="Sheikhupura">Sheikhupura</option>
+                      <!-- Add other cities here -->
+                      <option value="Daharki">Daharki</option>
+                      <option value="Narowal">Narowal</option>
+                      <option value="Tando Muhammad Khan">Tando Muhammad Khan</option>
+                      <option value="Kamber Ali Khan">Kamber Ali Khan</option>
+                      <option value="Mirpur Mathelo">Mirpur Mathelo</option>
+                      <option value="Kandhkot">Kandhkot</option>
+                      <option value="Bhalwal">Bhalwal</option>                    </select>
+                    <div class="invalid-feedback">
+                      Please select a valid city.
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationCustom04" class="form-label">Region</label>
+                    <select class="form-select" id="validationCustom04" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option>UET</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select a valid region.
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                      <label for="validationCustom05" class="form-label">Election Type</label>
+                      <input type="text" class="form-control" id="validationCustom05" required>
+                      <div class="invalid-feedback">
+                          Please provide a valid election type.
+                      </div>
+                  </div>
+                <div class="col-md-12">
+                    <label for="validationCustom04" class="form-label">Description</label>
+                    <input type="text" class="form-control" id="validationCustom04" required>
+                    <div class="invalid-feedback">
+                        Please provide a password.
+                    </div>
+                </div>
+                
+                <div class="col-12">
+                    <div class="text-end">
+                        <button class="btn btn-primary" id="btnSave" type="submit">Submit form</button>
+                    </div>
+                </div>
+            </form>
+    </div>
+    <div class="tableElection">
+        <table class="table table-striped">
+            <thead>
+                <tr>
                     <th scope="col">#</th>
                     <th scope="col">First</th>
                     <th scope="col">Last</th>
                     <th scope="col">Handle</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
                     <th scope="row">1</th>
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
-                  </tr>
-                  <tr>
+                </tr>
+                <tr>
                     <th scope="row">2</th>
                     <td>Jacob</td>
                     <td>Thornton</td>
                     <td>@fat</td>
-                  </tr>
-                  <tr>
+                </tr>
+                <tr>
                     <th scope="row">3</th>
                     <td colspan="2">Larry the Bird</td>
                     <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
-    </section>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<script src="/js/AdminElection.js"></script>

@@ -297,4 +297,89 @@ select {
     padding:8px 8px;
     height: 35px;
     width: 180px;
+    border: 2px solid var(--textColor2);
+}
+.popup{
+    position: absolute;
+    top: -150%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(1.25);
+    width: 700px;
+    height: 600px;
+    background: #fff;
+    padding: 40px 40px;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    transition: top 0ms ease-in-out 200ms,opacity 200ms ease-in-out 0ms,transform 200ms ease-in-out 0ms;
+}
+.popup.active{
+    top: 30%;
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
+    transition: top 0ms ease-in-out 0ms,opacity 200ms ease-in-out 0ms,transform 200ms ease-in-out 0ms;
+
+}
+
+.popup h2{
+    text-align: center;
+
+    font-size: 28px;
+    font-weight: 500;
+    margin: 5px 0 10px;
+
+}
+.popup .form .form-element{
+    margin: 15px 0;
+    
+}
+.popup .form .form-element label{
+    font-size: 14px;
+    color: #222;
+    
+}
+.popup .form .form-element input[type="text"],
+.popup .form .form-element input[type="password"]{
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+
+
+}
+
+.popup .form .form-element button{
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background-color: var(--textColor2);
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+
+}
+.popup .close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: #888;
+    color: #eee;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+#btnSave{
+    border-radius: 8px;
+    padding:8px 8px;
+    height: 35px;
+    width: 180px;
 }

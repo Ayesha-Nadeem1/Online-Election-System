@@ -25,16 +25,18 @@ async function createUser(req, res) {
 
         // Save the new user to the database
         await newUser.save();
-        const userId = newUser._id;
+        // const userId = newUser._id;
 
         const newDetails = new UserDetail({
-            UserId: userId,
+            UserId: newUser._id,
             FirstName: firstName,
             LastName: lastName
         });
         await newDetails.save();
 
-        return res.redirect("/");
+        setTimeout(() => {
+            res.redirect("/");
+        }, 5000);
 
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -70,31 +72,44 @@ async function login(req, res, next) {
         }
 
         // If passwords match, generate a token
-        const token = GenerateToken(user);
+        //const token = GenerateToken(user);
 
         // Prepare response data with token and user info
         let responseData = {
             message: 'Logged in successfully',
-            UserName,
-            Email: user.Email,
-            RoleId: user.RoleId,
-            token,
         };
 
-        // For users with RoleId 2 (admin), redirect to admin page
-        if (user.RoleId === 2) {
+        if (user.RoleId === 1) {
             // Redirect to admin dashboard
+            user.Role = 'User';
             responseData.isAdmin = true;
+            responseData.Role = 'User';
+            
         }
+        else if (user.RoleId === 2) {
+            // Redirect to admin dashboard
+            user.Role = 'Admin';
+            responseData.isAdmin = false;
+            responseData.Role = 'Admin';
+        }
+        const token=setUser(user); 
+        responseData.token = token;
+
+        res.cookie("uid",token)
+        if (user.RoleId === 1) {
+            return res.status(200).json(responseData);
+
+            
+        } 
+        else if (user.RoleId === 2) {     
+            return res.render('AdminNavbar', { page:'AdminDashboard'});
+        }
+        // For users with RoleId 2 (admin), redirect to admin page
 
         // For other users, send the prepared response data
         // return res.status(200).json(responseData);
         // const sessionId=uuidv4();
         // setUser(sessionId,user)
-        const token2=setUser(user); 
-        res.cookie("uid",token2)
-        return res.render('AdminNavbar', { page:'AdminDashboard'});
-        return res.status(200).json(responseData);
 
         
     } catch (err) {

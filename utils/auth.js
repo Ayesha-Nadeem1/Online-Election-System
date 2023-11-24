@@ -9,7 +9,8 @@ function setUser(user){
     return jwt.sign({
         _id:user._id,
         email:user.Email,
-        username:user.UserName
+        username:user.UserName,
+        role:user.Role
 
     },
     key
