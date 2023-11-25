@@ -9,7 +9,11 @@ const electionSchema = new mongoose.Schema({
     Region: { type: String, maxlength: 255,required: true },
     Description: { type: String ,required: true},
     ElectionType: { type: String, maxlength: 255 },
+    CreatedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User' // Reference to the 'users' collection
+    },
     isActive: { type: Boolean,default:true}
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Election', electionSchema);
