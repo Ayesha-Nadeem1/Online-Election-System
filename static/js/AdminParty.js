@@ -12,19 +12,10 @@
                 event.preventDefault()
                 event.stopPropagation()
             }
-
             form.classList.add('was-validated')
         }, false)
     })
 })()
-// let popup= document.getElementById('popup');
-// function openPopup(){
-//     popup.classList.add('open-popup')
-// }
-
-// function closePopup(){
-//     popup.classList.remove('open-popup')
-// }
 
 
 document.querySelector("#btnAddNewParty").addEventListener("click", function () {
@@ -58,10 +49,11 @@ function deleteParty(id) {
                     const rowToRemove = document.getElementById(`partyRow_${id}`);
                     if (rowToRemove) {
                         rowToRemove.remove();
+
                     }
                 } else {
                     // Handle unsuccessful deletion (optional)
-                    console.error('Failed to delete the election');
+                    console.error('Failed to delete the Party');
                 }
 
             })

@@ -263,7 +263,7 @@ body {
     position: absolute;
     top: 50px;
     /* Adjust as needed */
-    right: 6px;
+    right: 12px;
     /* Adjust to move it horizontally */
     display: flex;
     /* Use flexbox for layout control */
@@ -294,9 +294,9 @@ select {
 }
 #btnAddNewElection{
     border-radius: 4px;
-    padding:8px 8px;
+    padding:8px 2px;
     height: 30px;
-    width: 150px;
+    width: 160px;
     border: 2px solid var(--textColor2);
     margin-right: 0px;
 }

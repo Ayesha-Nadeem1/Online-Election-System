@@ -7,6 +7,8 @@ const userRoute=require('./routes/userRoute')
 const adminRoute=require('./routes/adminRoute')
 const electionRoute=require('./routes/electionRoute')
 const partyRoute=require('./routes/partyRoute')
+const authorization = require('./utils/authorizationMiddleware');
+
 
 const cookieParser = require("cookie-parser");
 
@@ -25,9 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true })); // For parsing form data
 
 app.use('/users',userRoute);
-app.use('/admin',adminRoute);
-app.use('/election',electionRoute);
-app.use('/party',partyRoute);
+app.use('/admin',authorization.restrictToLoggedinUserOnly,authorization.requireRoles(['Admin']),adminRoute);
+app.use('/election',authorization.restrictToLoggedinUserOnly,authorization.requireRoles(['Admin']),electionRoute);
+app.use('/party',authorization.restrictToLoggedinUserOnly,authorization.requireRoles(['Admin']), partyRoute);
 
 app.get('/', (req, res) => {
   res.render('LandingNavbar', { page: 'login', navbarButtonText: 'Sign In' });

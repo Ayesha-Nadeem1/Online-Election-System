@@ -37,7 +37,7 @@
 <section class="voterTally">
     <h1 class="headingText">All Parties</h1>
     <div class="container">
-        <button type="button" class="btn btn-primary btn-sm" id="btnAddNewParty" onclick="openPopup()">Add New
+        <button type="button" class="btn btn-primary btn-sm" id="btnAddNewParty" onclick="openPopup()"><i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i> Add New
             Party</button>
 
     </div>
@@ -60,10 +60,7 @@
                     <div class="invalid-feedback">
                         Please provide the party sign.
                     </div>
-                </div>
-                
-               
-                
+                </div>    
                 <div class="col-12">
                     <div class="text-end">
                         <button class="btn btn-primary" id="btnSave" type="submit">Save</button>
@@ -78,7 +75,6 @@
                     <th scope="col">#</th>
                     <th scope="col">Party Name</th>
                     <th scope="col">Party Sign</th>
-                   
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
 
@@ -95,11 +91,13 @@
                             <button onclick="editElection(
                                 '<%= party._id %>',
                                 '<%= party.Name %>',
-                                '<%= party.Sign %>',
-                                
-                            )" class="btn btn-primary btn-sm">Edit</button>                        </td>
+                                '<%= party.Sign %>'
+                            )" class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i> Edit
+                            </button>
+                        </td>
                         <td>
-                            <button onclick="deleteParty('<%= party._id %>')" class="btn btn-primary btn-sm">Delete</button>
+                            <button onclick="deleteParty('<%= party._id %>')" class="btn btn-primary btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>
                         </td>
                     </tr>
                 <% }) %>

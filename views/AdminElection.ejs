@@ -37,7 +37,7 @@
 <section class="voterTally">
     <h1 class="headingText">All Election</h1>
     <div class="container">
-        <button type="button" class="btn btn-primary btn-sm" id="btnAddNewElection" onclick="openPopup()">Add New
+        <button type="button" class="btn btn-primary btn-sm" id="btnAddNewElection" onclick="openPopup()"> <i class="fa-solid fa-circle-plus" style="color: #ffffff;"></i> Add New
             Election</button>
 
     </div>
@@ -188,9 +188,12 @@
                                 '<%= election.Description %>',
                                 '<%= election.StartDate %>',
                                 '<%= election.EndDate %>'
-                            )" class="btn btn-primary btn-sm">Edit</button>                        </td>
+                            )" class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i> Edit
+                            </button>
+                        </td>
                         <td>
-                            <button onclick="deleteElection('<%= election._id %>')" class="btn btn-primary btn-sm">Delete</button>
+                            <button onclick="deleteElection('<%= election._id %>')" class="btn btn-primary btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>
                         </td>
                     </tr>
                 <% }) %>

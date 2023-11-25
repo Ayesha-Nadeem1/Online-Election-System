@@ -16,6 +16,9 @@ async function createParty(req, res) {
 
         // Save the new user to the database
         await newParty.save();
+             setTimeout(() => {
+            res.redirect("/admin/party");
+        }, 100);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -61,6 +64,16 @@ async function updateParty(req, res) {
       res.status(500).json({ error: err.message });
     }
   }
+  async function getAllParty(req,res)
+{
+    try{
+        const user = await Party.find();
+        res.json(user);
+    }
+    catch(err){
+        res.status(500).json({error:err.message});
+    }
+}
 module.exports = {
-    createParty,getAllParties,deleteParty,updateParty,
+    createParty,getAllParties,deleteParty,updateParty,getAllParty,
 };

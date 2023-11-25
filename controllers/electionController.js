@@ -26,9 +26,9 @@ async function createElection(req, res) {
 
         // Save the new user to the database
         await newElection.save();
-        // setTimeout(() => {
-        //     res.redirect("/admin/election");
-        // }, 1000);
+        setTimeout(() => {
+            res.redirect("/admin/election");
+        }, 100);
 
     } catch (err) {
         res.status(500).json({ error: err.message });
