@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const electionController = require('../controllers/electionController');
+const partyController = require('../controllers/partyController');
 
 const authorization = require('../utils/authorizationMiddleware');
 router.get('/dashboard', authorization.restrictToLoggedinUserOnly,authorization.requireRoles(['Admin']), (req, res) => {
@@ -18,6 +19,19 @@ router.get('/election', authorization.restrictToLoggedinUserOnly, authorization.
       electionController.getAllElection()
           .then(elections => {
               res.render('AdminNavbar', { page: 'AdminElection', elections });
+          })
+          .catch(err => {
+              res.status(500).json({ error: err.message });
+          });
+  } catch (err) {
+      res.status(500).json({ error: err.message });
+  }
+});
+router.get('/party', authorization.restrictToLoggedinUserOnly, authorization.requireRoles(['Admin']), (req, res) => {
+  try {
+      partyController.getAllParties()
+          .then(parties => {
+              res.render('AdminNavbar', { page: 'AdminParty', parties });
           })
           .catch(err => {
               res.status(500).json({ error: err.message });
