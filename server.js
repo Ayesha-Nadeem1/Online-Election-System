@@ -7,6 +7,8 @@ const userRoute=require('./routes/userRoute')
 const adminRoute=require('./routes/adminRoute')
 const electionRoute=require('./routes/electionRoute')
 const partyRoute=require('./routes/partyRoute')
+const candidateRoute=require('./routes/candidateRoute')
+
 const authorization = require('./utils/authorizationMiddleware');
 
 
@@ -30,6 +32,7 @@ app.use('/users',userRoute);
 app.use('/admin',authorization.restrictToLoggedinUserOnly,authorization.requireRoles(['Admin']),adminRoute);
 app.use('/election',authorization.restrictToLoggedinUserOnly,authorization.requireRoles(['Admin']),electionRoute);
 app.use('/party',authorization.restrictToLoggedinUserOnly,authorization.requireRoles(['Admin']), partyRoute);
+app.use('/candidate',authorization.restrictToLoggedinUserOnly,authorization.requireRoles(['Admin']), candidateRoute);
 
 app.get('/', (req, res) => {
   res.render('LandingNavbar', { page: 'login', navbarButtonText: 'Sign In' });

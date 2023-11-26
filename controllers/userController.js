@@ -7,6 +7,7 @@ const {setUser}=require('../utils/auth')
 
 
 
+
 async function createUser(req, res) {
     try {
         const { firstName, lastName, userName, email, password, confirmPassword } = req.body;

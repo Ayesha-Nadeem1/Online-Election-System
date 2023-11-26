@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('../models/user'); // Import the User model
 
 const partySchema = new mongoose.Schema({
     Name: { type: String, maxlength: 255,required: true},

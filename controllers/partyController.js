@@ -6,8 +6,8 @@ async function createParty(req, res) {
     try {
         const { partyName, partySign } = req.body;
         const token = req.cookies.uid;
-        const decoded = getUser(token);
-        const userId = decoded.user_id;
+        const User  = getUser(token);
+        const userId = User._id; // Accessing the _id field
         const newParty = new Party({
             Name: partyName,
             Sign: partySign,
@@ -26,7 +26,7 @@ async function createParty(req, res) {
 const getAllParties = async () => {
     try {
         // Fetch data from MongoDB (using Mongoose or other methods)
-        const parties = await Party.find({}); // Example query, adjust as needed
+        const parties = await Party.find({}).populate('CreatedBy', 'UserName'); // Example query, adjust as needed
         return parties; // Return the fetched data
     } catch (err) {
         throw new Error(err.message); // Handle any errors and throw them for handling in the route handler

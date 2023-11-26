@@ -75,6 +75,8 @@
                     <th scope="col">#</th>
                     <th scope="col">Party Name</th>
                     <th scope="col">Party Sign</th>
+                    <th scope="col">Created By</th>
+
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
 
@@ -86,6 +88,7 @@
                         <th scope="row"><%= index + 1 %></th>
                         <td><%= party.Name %></td>
                         <td><%= party.Sign %></td>
+                        <td><%= party.CreatedBy && party.CreatedBy.UserName ? party.CreatedBy.UserName : "" %></td>
                         
                         <td>
                             <button onclick="editElection(

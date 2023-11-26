@@ -3,13 +3,24 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const electionController = require('../controllers/electionController');
 const partyController = require('../controllers/partyController');
+const candidateController = require('../controllers/candidateController');
 
 const authorization = require('../utils/authorizationMiddleware');
 router.get('/dashboard', (req, res) => {
     res.render('AdminNavbar', { page: 'AdminDashboard' });
 });
-router.get('/candidate', (req, res) => {
-    res.render('AdminNavbar', { page: 'AdminCandidate' });
+router.get('/candidate',  (req, res) => {
+  try {
+      candidateController.getAllCandidate()
+          .then(candidates => {
+              res.render('AdminNavbar', { page: 'AdminCandidate', candidates });
+          })
+          .catch(err => {
+              res.status(500).json({ error: err.message });
+          });
+  } catch (err) {
+      res.status(500).json({ error: err.message });
+  }
 });
 router.get('/voters',(req, res) => {
   res.render('AdminNavbar', { page: 'AdminVoter'});

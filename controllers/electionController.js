@@ -1,6 +1,5 @@
 const Election = require('../models/election');
 const cookieParser = require('cookie-parser');
-
 const {getUser}=require('../utils/auth')
 
 async function createElection(req, res) {
@@ -9,8 +8,8 @@ async function createElection(req, res) {
         console.log(electionName, startDate, endDate, province, city, region,electionType,description)
         const token = req.cookies.uid;
 
-          const decoded=getUser(token);
-          const userId = decoded.user_id;
+        const User  = getUser(token);
+        const userId = User._id; // Accessing the _id field
 
         const newElection = new Election({
             Name: electionName,
@@ -37,7 +36,7 @@ async function createElection(req, res) {
 const getAllElection = async () => {
     try {
         // Fetch data from MongoDB (using Mongoose or other methods)
-        const elections = await Election.find({}); // Example query, adjust as needed
+        const elections = await Election.find({}).populate('CreatedBy', 'UserName');  // Example query, adjust as needed
         return elections; // Return the fetched data
     } catch (err) {
         throw new Error(err.message); // Handle any errors and throw them for handling in the route handler
