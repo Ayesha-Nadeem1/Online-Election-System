@@ -1,3 +1,28 @@
+window.addEventListener('error', function(event) {
+  console.log('error');
+  const errorData = {
+      message: event.message,
+      filename: event.filename,
+      lineNumber: event.lineno,
+      columnNumber: event.colno,
+      error: event.error ? event.error.stack : null
+  };
+console.log(errorData)
+  // Send the errorData to your server (via an API endpoint)
+  fetch('/log/error', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+
+      body: JSON.stringify(errorData)
+  }).then(response => {
+      // Handle response if needed
+  }).catch(error => {
+      console.error('Error sending error data:', error);
+  });
+});
+
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
   'use strict'
@@ -44,33 +69,34 @@ document.querySelector(".popup .close-btn").addEventListener("click", function (
 });
 
 function deleteElection(id) {
-  // Confirm deletion (optional)
-  console.log(id);
   const confirmation = confirm("Are you sure you want to delete this election?");
-  if (confirmation) {
-    // Make a DELETE request to the API endpoint to delete the election
-    fetch(`/election/delete/${id}`, {
-      method: 'DELETE'
-    })
-      .then(response => {
-        if (response.ok) {
-          // Remove the corresponding row from the table
-          const rowToRemove = document.getElementById(`electionRow_${id}`);
-          if (rowToRemove) {
-            rowToRemove.remove();
-          }
-        } else {
-          // Handle unsuccessful deletion (optional)
-          console.error('Failed to delete the election');
-        }
 
+  if (confirmation) {
+    try {
+      // Make a DELETE request to the API endpoint to delete the election
+      fetch(`/election/delete/${id}`, {
+        method: 'DELETE'
       })
-      .catch(error => console.error('Error:', error));
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to delete the election');
+          } else {
+            // Remove the corresponding row from the table
+            const rowToRemove = document.getElementById(`electionRow_${id}`);
+            if (rowToRemove) {
+              rowToRemove.remove();
+            }
+          }
+        })
+        .catch(error => console.error('Error:', error));
+    } catch (error) {
+      // Triggering the global error event by throwing an error
+      throw new Error(error);
+    }
   }
 }
-function editElection(id, name, electionType, province, city, region, description, startDate, endDate) {
-  console.log(id, name, electionType, province, city, region, description, startDate, endDate);
 
+function editElection(id, name, electionType, province, city, region, description, startDate, endDate) {
   // Set the form fields with the provided data
   document.getElementById('validationCustom01').value = name || '';
   document.getElementById('validationCustom02').value = formatDate(startDate) || '';
@@ -110,7 +136,7 @@ function editElection(id, name, electionType, province, city, region, descriptio
     for (const [key, value] of formData.entries()) {
       data[key] = value;
     }
-      console.log('data',data)
+    console.log('data', data)
     // Make a PUT request to the edit API endpoint
     fetch(`/election/edit/${id}`, {
       method: 'PUT',
@@ -119,18 +145,22 @@ function editElection(id, name, electionType, province, city, region, descriptio
       },
       body: JSON.stringify(data)
     })
-    .then(response => {
-      if (response.ok) {
-        // Handle successful update (if needed)
-        console.log('Election updated successfully');
-      } else {
-        // Handle unsuccessful update (if needed)
-        console.error('Failed to update the election');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+      .then(response => {
+        if (response.ok) {
+          // Handle successful update (if needed)
+          console.log('Election updated successfully');
+        } else {
+          // Handle unsuccessful update (if needed)
+          console.error('Failed to update the election');
+          throw new Error('Failed to update the election');
+
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        throw new Error(error);
+
+      });
   });
 }
 
@@ -144,4 +174,6 @@ function formatDate(dateString) {
   const day = date.getDate().toString().padStart(2, '0');
 
   return `${year}-${month}-${day}`;
-}
+};
+// errorHandler.js
+

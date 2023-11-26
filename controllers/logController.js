@@ -1,18 +1,23 @@
 const Log = require('../models/log');
 
 // Example function to log an error
-async function logError(errorMessage, source) {
-    const errorLog = new Log({
+async function logError(req, res) {
+    const { message, filename, lineNumber, columnNumber, error } = req.body;
+
+    const log = new Log({
         level: 'error',
-        message: errorMessage,
-        source: source // You can specify the source of the error here
+        message: message,
+        source: filename,
+        lineNumber: lineNumber,
+        columnNumber: columnNumber,
+        error: error
     });
 
     try {
-        await errorLog.save();
-        console.log('Error logged successfully.');
-    } catch (error) {
-        console.error('Error logging:', error);
+        await log.save();
+        res.status(200).send('Error logged successfully.');
+    } catch (err) {
+        res.status(500).send('Error logging the error!');
     }
 }
 

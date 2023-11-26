@@ -8,6 +8,7 @@ const adminRoute=require('./routes/adminRoute')
 const electionRoute=require('./routes/electionRoute')
 const partyRoute=require('./routes/partyRoute')
 const candidateRoute=require('./routes/candidateRoute')
+const logRoute=require('./routes/logRoute')
 
 const authorization = require('./utils/authorizationMiddleware');
 
@@ -33,6 +34,7 @@ app.use('/admin',authorization.restrictToLoggedinUserOnly,authorization.requireR
 app.use('/election',authorization.restrictToLoggedinUserOnly,authorization.requireRoles(['Admin']),electionRoute);
 app.use('/party',authorization.restrictToLoggedinUserOnly,authorization.requireRoles(['Admin']), partyRoute);
 app.use('/candidate',authorization.restrictToLoggedinUserOnly,authorization.requireRoles(['Admin']), candidateRoute);
+app.use('/log',logRoute);
 
 app.get('/', (req, res) => {
   res.render('LandingNavbar', { page: 'login', navbarButtonText: 'Sign In' });
@@ -43,7 +45,6 @@ app.get('/', (req, res) => {
 app.get('/SignUp', (req, res) => {
   res.render('LandingNavbar', { page: 'signup', navbarButtonText: 'Sign In' });
 });
-
 
 //Listening the app
 app.listen(port,()=>{

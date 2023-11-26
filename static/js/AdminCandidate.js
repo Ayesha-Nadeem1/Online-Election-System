@@ -1,3 +1,27 @@
+window.addEventListener('error', function(event) {
+    console.log('error');
+    const errorData = {
+        message: event.message,
+        filename: event.filename,
+        lineNumber: event.lineno,
+        columnNumber: event.colno,
+        error: event.error ? event.error.stack : null
+    };
+  console.log(errorData)
+    // Send the errorData to your server (via an API endpoint)
+    fetch('/log/error', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+  
+        body: JSON.stringify(errorData)
+    }).then(response => {
+        // Handle response if needed
+    }).catch(error => {
+        console.error('Error sending error data:', error);
+    });
+  });
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
     'use strict'
@@ -35,30 +59,33 @@ document.querySelector(".popup .close-btn").addEventListener("click", function (
 });
 
 function deleteCandidate(id) {
-    // Confirm deletion (optional)
-    console.log(id);
     const confirmation = confirm("Are you sure you want to delete this candidate?");
     if (confirmation) {
-        // Make a DELETE request to the API endpoint to delete the election
-        fetch(`/candidate/delete/${id}`, {
-            method: 'DELETE'
-        })
-            .then(response => {
-                if (response.ok) {
-                    // Remove the corresponding row from the table
-                    const rowToRemove = document.getElementById(`candidateRow_${id}`);
-                    if (rowToRemove) {
-                        rowToRemove.remove();
-                    }
-                } else {
-                    // Handle unsuccessful deletion (optional)
-                    console.error('Failed to delete the Party');
-                }
-
+        try {
+            // Make a DELETE request to the API endpoint to delete the candidate
+            fetch(`/candidate/delete/${id}`, {
+                method: 'DELETE'
             })
-            .catch(error => console.error('Error:', error));
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to delete the Candidate');
+                    } else {
+                        // Remove the corresponding row from the table
+                        const rowToRemove = document.getElementById(`candidateRow_${id}`);
+                        if (rowToRemove) {
+                            rowToRemove.remove();
+                        }
+                    }
+                })
+                .catch(error => console.error('Error:', error)); // Logging any other errors within the fetch chain
+        } catch (error) {
+            console.error('Error:', error); // Catching errors from the fetch operation itself
+            throw new Error(error);
+
+        }
     }
 }
+
 function editCandidate(id, firstName, lastName,dob,cnic,phoneNumber,province,city,region,address,createdBy) {
 
     // Set the form fields with the provided data
@@ -114,10 +141,13 @@ function editCandidate(id, firstName, lastName,dob,cnic,phoneNumber,province,cit
                 } else {
                     // Handle unsuccessful update (if needed)
                     console.error('Failed to update the election');
+                    throw new error('Failed to update the election');
+
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
+                throw new error(error);
             });
     });
 }
